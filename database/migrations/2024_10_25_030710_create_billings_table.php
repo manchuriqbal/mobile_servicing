@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers', 'id')->cascadeOnDelete();
             $table->foreignId('service_id')->constrained('services', 'id')->cascadeOnDelete();
-            $table->foreignId('device_id')->constrained('devices', 'id')->cascadeOnDelete();
             $table->foreignId('technician_id')->constrained('technicians', 'id')->cascadeOnDelete();
+            $table->string('device_name');
             $table->decimal('amount', 10, 2);
             $table->decimal('purchase_price', 10, 2);
             $table->string('payment_method', 10)->default('cash');
-            $table->longText('comment')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ class Billing extends Model
         'customer_id',
         'technician_id',
         'service_id',
-        'device_id',
+        'device_name',
         'amount',
         'purchase_price',
         'payment_method',

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBillingRequest;
 use App\Http\Requests\UpdateBillingRequest;
 use App\Models\Billing;
+use App\Models\Customer;
+use App\Models\Service;
+use App\Models\Technician;
 
 class BillingController extends Controller
 {
@@ -13,7 +16,9 @@ class BillingController extends Controller
      */
     public function index()
     {
-        return view('pages.billing.index');
+        return view('pages.billing.index')->with([
+            'billing' => Billing::latest()->paginate(),
+        ]);
     }
 
     /**
@@ -21,7 +26,10 @@ class BillingController extends Controller
      */
     public function create()
     {
-        return view('pages.billing.create');
+        return view('pages.billing.create')->with([
+            'technicians' => Technician::all(),
+            'services' => Service::all(),
+        ]);
     }
 
     /**
@@ -29,7 +37,27 @@ class BillingController extends Controller
      */
     public function store(StoreBillingRequest $request)
     {
-        //
+        // Create new Customer
+        $customer = Customer::firstOrCreate([
+            'first_name' => $request->first_name,
+            'phone' => $request->phone,
+        ]);
+
+        // Create New Bill
+        // dd($request->all());
+
+        Billing::create([
+            'customer_id' => $customer->id,
+            'technician_id' => $request->technician_id,
+            'service_id' => $request->service_id,
+            'device_name' => $request->device_name,
+            'amount' => $request->amount,
+            'purchase_price' => $request->purchase_price,
+            'payment_method' => $request->payment_method,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->route('billings.index');
     }
 
     /**

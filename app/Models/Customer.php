@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Customer extends Model
 {
+    protected $fillable = [
+        'first_name',
+        'phone'
+    ];
     use HasFactory;
 
     protected static function newFactory() : CustomerFactory

@@ -21,6 +21,7 @@ class ProductFactory extends Factory
         $category = Category::inRandomOrder()->first();
         $device = Device::inRandomOrder()->first();
         return [
+            'name' => fake()->word(),
             'quantity' => fake()->numberBetween(1,100),
             'device_id' => $device->id,
             'category_id' => $category->id,

@@ -21,16 +21,18 @@
 
     <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
-    <h2>Section title</h2>
+
+    @include('pages.billing.billings')
+    {{-- <h2>Technician Earnings Analyses</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Header</th>
-            <th scope="col">Header</th>
-            <th scope="col">Header</th>
-            <th scope="col">Header</th>
+            <th scope="col">Technician Name</th>
+            <th scope="col">Technician Picture</th>
+            <th scope="col">Earnings</th>
+            <th scope="col">Parts Expense</th>
           </tr>
         </thead>
         <tbody>
@@ -149,5 +151,5 @@
         </tbody>
       </table>
     </div>
-  </main>
+  </main> --}}
 @endsection

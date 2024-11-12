@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTechnicianRequest;
 use App\Http\Requests\UpdateTechnicianRequest;
 use App\Models\Technician;
+use App\Models\TechnicianRole;
 
 class TechnicianController extends Controller
 {
@@ -13,7 +14,9 @@ class TechnicianController extends Controller
      */
     public function index()
     {
-        return view('pages.technician.index');
+        return view('pages.technician.index')->with([
+            'technicians' => Technician::latest()->paginate(),
+        ]);
     }
 
     /**
@@ -21,7 +24,9 @@ class TechnicianController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.technician.create')->with([
+            'roles' => TechnicianRole::all(),
+        ]);
     }
 
     /**
@@ -29,7 +34,11 @@ class TechnicianController extends Controller
      */
     public function store(StoreTechnicianRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        Technician::create($data);
+
+        return redirect()->route('technicians.index');
     }
 
     /**
@@ -37,7 +46,12 @@ class TechnicianController extends Controller
      */
     public function show(Technician $technician)
     {
-        //
+        // dd($technician);
+        $technician->load('role');
+
+        return view('pages.technician.show')->with([
+            'technician' => $technician,
+        ]);
     }
 
     /**
@@ -45,7 +59,10 @@ class TechnicianController extends Controller
      */
     public function edit(Technician $technician)
     {
-        //
+        return view('pages.technician.edit')->with([
+            'roles' => TechnicianRole::all(),
+            'technician' => $technician,
+        ]);
     }
 
     /**

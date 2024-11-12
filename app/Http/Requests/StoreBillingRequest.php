@@ -11,7 +11,7 @@ class StoreBillingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreBillingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => ['nullable', 'max:250', 'string'],
+            'phone' => ['nullable', 'string'],
+            'technician_id' => ['required', 'exists:technicians,id'],
+            'service_id' => ['required', 'exists:services,id'],
+            'device_name' => ['string', 'required', 'max:250'],
+            'amount' => ['required', 'numeric'],
+            'purchase_price' => ['required', 'numeric'],
+            'payment_method' => ['required', 'in:cash,bkash'],
+            'comment' => ['nullable', 'string', 'max:250'],
         ];
     }
 }

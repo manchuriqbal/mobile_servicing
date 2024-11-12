@@ -22,13 +22,18 @@ class BillingFactory extends Factory
     {
         $customer = Customer::inRandomOrder()->first();
         $service = Service::inRandomOrder()->first();
-        $device = Device::inRandomOrder()->first();
         $technician = Technician::inRandomOrder()->first();
+        $deviceName = [
+            'Apple', 'Xiaomi', 'OPPO', 'Samsung', 'Vivo', 'OnePlus', 'Realme',
+            'Huawei', 'Motorola', 'Asus', 'Nokia', 'Google', 'Lg', 'Honor',
+            'HTC', 'Tecno', 'Infinix', 'Lenovo', 'Lava', 'SONY', 'BlackBerry',
+            'itel Mobile',
+        ];
         return [
             'customer_id' => $customer->id,
             'service_id' => $service->id,
-            'device_id' => $device->id,
             'technician_id' => $technician->id,
+            'device_name' => fake()->randomElement($deviceName),
             'amount' => fake()->randomFloat(2, 1500, 5000),
             'purchase_price' => fake()->randomFloat(2, 20, 1400),
             'payment_method' => \App\Models\Billing::PAYMENT_CASH,

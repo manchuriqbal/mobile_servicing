@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('profile_pic')->nullable();
             $table->foreignId('role_id')->constrained('technician_roles', 'id')->cascadeOnDelete();
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

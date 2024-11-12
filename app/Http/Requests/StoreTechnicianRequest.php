@@ -11,7 +11,7 @@ class StoreTechnicianRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreTechnicianRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => ['required', 'string', 'max:250'],
+            'last_name'=> ['nullable', 'string', 'max:250'],
+            'national_id' => ['nullable','string', 'max:20', 'unique:technicians,national_id'],
+            'phone' => ['required', 'string', 'max:15', 'regex:/^\d+$/'],
+            'email' => ['nullable', 'string', 'max:250'],
+            'profile_pic' => ['nullable','string'],
+            'role_id' => ['required', 'exists:technician_roles,id'],
+            'status' => ['in:active,inactive'],
         ];
     }
 }

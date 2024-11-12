@@ -8,25 +8,25 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('billing.index')}}">
+          <a class="nav-link" href="{{route('billings.index')}}">
             <span data-feather="file"></span>
             Bill's
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('product.index')}}">
+          <a class="nav-link" href="{{route('products.index')}}">
             <span data-feather="shopping-cart"></span>
             Product
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('technician.index')}}">
+          <a class="nav-link" href="{{route('technicians.index')}}">
             <span data-feather="users"></span>
             Technician
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('reports.index')}}">
             <span data-feather="bar-chart-2"></span>
             Reports
           </a>
